@@ -74,8 +74,8 @@ pipeline {
                 script{
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'Kubernetes-Credential', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
                        sh 'kubectl apply -f deploy-envs/test-env/test-namespace.yaml'
-                       sh 'kubectl apply -f deploy-envs/test-env/deployment.yaml'
-                       sh 'kubectl apply -f deploy-envs/test-env/nodeport-service.yaml'  //NodePort Service
+                       sh 'kubectl apply -f deploy-envs/test-env/nodeport-service.yaml'
+                       sh 'kubectl apply -f deploy-envs/test-env/deployment.yaml'  //NodePort Service
                    }
                 }
             }
@@ -101,8 +101,8 @@ pipeline {
                 script{
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'Kubernetes-Credential', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
                        sh 'kubectl apply -f deploy-envs/prod-env/prod-namespace.yaml'
-                       sh 'kubectl apply -f deploy-envs/prod-env/deployment.yaml'
-                       sh 'kubectl apply -f deploy-envs/prod-env/loadbalancer-service.yaml'  //LoadBalancer Service
+                       sh 'kubectl apply -f deploy-envs/prod-env/loadbalancer-service.yaml'
+                       sh 'kubectl apply -f deploy-envs/prod-env/deployment.yaml'  //LoadBalancer Service
                     }
                 }
             }
