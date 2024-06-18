@@ -16,7 +16,7 @@ pipeline {
         // Checkout To The Service Branch
         stage('Checkout To Mcroservice Branch'){
             steps{
-                git branch: 'app-product-catalog-service', url: 'https://github.com/awanmbandi/realworld-microservice-project.git'
+                git branch: 'app-product-catalog-service', url: 'https://github.com/gasaba02/realworld-microservice-project.git'
             }
         }
         // SonarQube SAST Code Analysis
@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'DockerHub-Credential', toolName: 'docker') {
-                        sh "docker build -t awanmbandi/productcatalogservice:latest ."
+                        sh "docker build -t gasaba02/productcatalogservice:latest ."
                     }
                 }
             }
@@ -55,7 +55,7 @@ pipeline {
         // Execute SCA/Dependency Test on Service Docker Image
         stage('Snyk SCA Test | Dependencies') {
             steps {
-                sh "${SNYK_HOME}/snyk-linux test --docker awanmbandi/productcatalogservice:latest || true" 
+                sh "${SNYK_HOME}/snyk-linux test --docker gasaba02/productcatalogservice:latest || true" 
             }
         }
         // Push Service Image to DockerHub
@@ -63,7 +63,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'DockerHub-Credential', toolName: 'docker') {
-                        sh "docker push awanmbandi/productcatalogservice:latest "
+                        sh "docker push gasaba02/productcatalogservice:latest "
                     }
                 }
             }
